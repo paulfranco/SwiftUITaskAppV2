@@ -17,7 +17,7 @@
 		03AF731E260766A9008D9114 /* SwiftUITaskAppV2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF731D260766A9008D9114 /* SwiftUITaskAppV2UITests.swift */; };
 		03AF733126076876008D9114 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF733026076876008D9114 /* Home.swift */; };
 		03AF7336260768DB008D9114 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF7335260768DB008D9114 /* HomeViewModel.swift */; };
-		03AF733B260769BD008D9114 /* NewDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF733A260769BD008D9114 /* NewDataView.swift */; };
+		03AF733B260769BD008D9114 /* EditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF733A260769BD008D9114 /* EditTaskView.swift */; };
 		03AF734026076EF2008D9114 /* DateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF733F26076EF2008D9114 /* DateButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +55,7 @@
 		03AF731F260766A9008D9114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03AF733026076876008D9114 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		03AF7335260768DB008D9114 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		03AF733A260769BD008D9114 /* NewDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDataView.swift; sourceTree = "<group>"; };
+		03AF733A260769BD008D9114 /* EditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskView.swift; sourceTree = "<group>"; };
 		03AF733F26076EF2008D9114 /* DateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				03AF733026076876008D9114 /* Home.swift */,
-				03AF733A260769BD008D9114 /* NewDataView.swift */,
+				03AF733A260769BD008D9114 /* EditTaskView.swift */,
 				03AF733F26076EF2008D9114 /* DateButton.swift */,
 			);
 			path = View;
@@ -300,7 +300,7 @@
 				03AF72FE260766A3008D9114 /* ContentView.swift in Sources */,
 				03AF734026076EF2008D9114 /* DateButton.swift in Sources */,
 				03AF72FC260766A3008D9114 /* SwiftUITaskAppV2App.swift in Sources */,
-				03AF733B260769BD008D9114 /* NewDataView.swift in Sources */,
+				03AF733B260769BD008D9114 /* EditTaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

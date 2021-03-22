@@ -13,6 +13,7 @@ struct Home: View {
     @StateObject var homeData = HomeViewModel()
     @FetchRequest(entity: Task.entity(), sortDescriptors: [NSSortDescriptor(key: "date", ascending: true)], animation: .spring()) var results : FetchedResults<Task>
     @Environment(\.managedObjectContext) var context
+    @State private var editorIsShown: Bool = false
     
     // MARK: - BODY
     var body: some View {
@@ -20,29 +21,25 @@ struct Home: View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom), content: {
             // MARK: - VSTACK
             VStack(spacing: 0) {
-                // MARK: - HSTACK
-                HStack {
+    
                     Text("Tasks")
                         .font(.largeTitle)
                         .fontWeight(.heavy)
                         .foregroundColor(.black)
-                    
-                    Spacer()
-                }//: HSTACK
+                        .frame(maxWidth: .infinity, alignment: .leading)
+             
                 .padding()
-                .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
-                .background(Color.white)
+                        .background(Color.white.edgesIgnoringSafeArea(.top))
                 
                 if results.isEmpty {
                     
-                    Spacer()
-                    
                     Text("No Tasks!!!!")
                         .font(.title)
-                        .foregroundColor(.black)
+                        .foregroundColor(.gray)
                         .fontWeight(.heavy)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     
-                    Spacer()
+                    
                 } else {
                     // MARK: - SCROLLVIEW
                     ScrollView(.vertical, showsIndicators: false, content: {
@@ -60,7 +57,10 @@ struct Home: View {
                                 })
                                 .foregroundColor(.black)
                                 .contextMenu {
-                                    Button(action: { homeData.editItem(item: task) }, label: {
+                                    Button(action: {
+                                            homeData.editItem(item: task)
+                                        editorIsShown.toggle()
+                                    }, label: {
                                         Text("Edit")
                                     })
                                     
@@ -78,7 +78,7 @@ struct Home: View {
                     
                 }
             }//: VSTACK
-            Button(action: { homeData.isNewData.toggle() }, label: {
+            Button(action: { self.editorIsShown.toggle() }, label: {
                 Image(systemName: "plus")
                     .font(.largeTitle)
                     .foregroundColor(.white)
@@ -90,10 +90,10 @@ struct Home: View {
             })
             .padding()
         }) //: ZSTASCK
-        .ignoresSafeArea(.all, edges: .top)
+        
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
-        .sheet(isPresented: $homeData.isNewData, content: {
-            NewDataView(homeData: homeData)
+        .sheet(isPresented: $editorIsShown, content: {
+            EditTaskView(homeData: homeData)
         })
     }
 }

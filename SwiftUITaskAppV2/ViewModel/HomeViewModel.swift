@@ -14,8 +14,6 @@ class HomeViewModel : ObservableObject {
     @Published var content = ""
     @Published var date = Date()
     
-    @Published var isNewData = false
-    
     @Published var updateItem: Task!
     
     // Checking and updating data
@@ -50,7 +48,7 @@ class HomeViewModel : ObservableObject {
             try! context.save()
             
             updateItem = nil
-            isNewData.toggle()
+            
             content = ""
             date = Date()
             return
@@ -62,7 +60,7 @@ class HomeViewModel : ObservableObject {
         
         do {
             try context.save()
-            isNewData.toggle()
+            
             
             content = ""
             date = Date()
@@ -77,6 +75,6 @@ class HomeViewModel : ObservableObject {
         date = item.date!
         content = item.content!
         
-        isNewData.toggle()
+        
     }
 }

@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct NewDataView: View {
+struct EditTaskView: View {
     
     // MARK: - PROPERTIES
     @ObservedObject var homeData: HomeViewModel
     @Environment(\.managedObjectContext) var context
+    @Environment(\.presentationMode) var presentation
     
     // MARK: - BODY
     var body: some View {
@@ -62,6 +63,7 @@ struct NewDataView: View {
             // MARK: - ADD TASK BUTTON
             Button(action: {
                 homeData.writeData(context: context)
+                presentation.wrappedValue.dismiss()
             }, label: {
                 Label(
                     title: { Text(homeData.updateItem == nil ? "Add Now" : "Update Now")
@@ -91,5 +93,12 @@ struct NewDataView: View {
     }//: BODY
 }
 
+
+struct NewDataView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditTaskView(homeData: HomeViewModel())
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
+}
 
 
