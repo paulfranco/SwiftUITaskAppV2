@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct DateButton: View {
-    // MARK: - PROPERTIES
-    var title: String
-    @ObservedObject var homeData: HomeViewModel
-    
-    // MARK: - BODY
-    var body: some View {
-        Button(action: { homeData.updateDate(value: title) }, label: {
-            Text(title)
-                .fontWeight(.bold)
-        })
-        .buttonStyle(GradientButtonStyle(isSelected: homeData.checkDate() == title))
-    }
-}
+//struct DateButton: View {
+//    // MARK: - PROPERTIES
+//    var title: String
+//    @ObservedObject var homeData: HomeViewModel
+//
+//    // MARK: - BODY
+//    var body: some View {
+//        Button(action: { homeData.updateDate(value: title) }, label: {
+//            Text(title)
+//                .fontWeight(.bold)
+//        })
+//        .buttonStyle(GradientButtonStyle(isSelected: homeData.isDateEqual() == title))
+//    }
+//}
 
 
 // MARK: VIEW MODIFIER
@@ -51,9 +51,9 @@ struct GradientButtonStyle: ButtonStyle {
 
 
 // MARK: - PREVIEW
-struct DateButton_Previews: PreviewProvider {
-    static var previews: some View {
-        DateButton(title: "Today", homeData: HomeViewModel())
-            .padding()
-    }
-}
+//struct DateButton_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DateButton(title: "Today", homeData: HomeViewModel())
+//            .padding()
+//    }
+//}

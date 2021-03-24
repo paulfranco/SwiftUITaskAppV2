@@ -29,23 +29,25 @@ class HomeViewModel : ObservableObject {
     // Checking and updating data
     let calendar = Calendar.current
     
-    func checkDate() -> String {
+    func isDateEqual(to formattedDate: FormattedDate) -> Bool {
+        
+        var selectedFormattedDate = FormattedDate.other
         if calendar.isDateInToday(date) {
-            return "Today"
+            selectedFormattedDate = .today
         } else if calendar.isDateInTomorrow(date) {
-            return "Tomorrow"
-        } else {
-            return "Other Day"
+            selectedFormattedDate = .tomorrow
         }
+        return formattedDate == selectedFormattedDate
     }
     
-    func updateDate(value: String) {
-        if value == "Today" {
+    func updateDate(to value: FormattedDate) {
+        switch value {
+        case .today:
             date = Date()
-        } else if value == "Tomorrow" {
+        case .tomorrow:
             date = calendar.date(byAdding: .day, value: 1, to: Date())!
-        } else {
-            // do something
+        case .other:
+            break
         }
     }
     
@@ -74,4 +76,11 @@ class HomeViewModel : ObservableObject {
     func editItem(item: Task) {
         updateItem = item
     }
+}
+
+
+enum FormattedDate {
+    case today
+    case tomorrow
+    case other
 }

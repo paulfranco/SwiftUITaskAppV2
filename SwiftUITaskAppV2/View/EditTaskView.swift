@@ -44,26 +44,27 @@ struct EditTaskView: View {
             
             // MARK: - HSTACK - Date Options
             HStack(spacing: 10) {
-                
+                // MARK: - TODAY BUTTON
                 Button(action: {
-                        homeData.updateDate(value: "Today")
+                    homeData.updateDate(to: .today)
                 }, label: {
                     Text("Today")
                         .fontWeight(.bold)
                 })
-                .buttonStyle(GradientButtonStyle(isSelected: homeData.checkDate() == "Today"))
+                .buttonStyle(GradientButtonStyle(isSelected: homeData.isDateEqual(to: .today)))
     
+                // MARK: - TOMORROW BUTTON
                 Button(action: {
-                        homeData.updateDate(value: "Tomorrow")
+                    homeData.updateDate(to: .tomorrow)
                     
                 }, label: {
                     Text("Tomorrow")
                         .fontWeight(.bold)
                 })
-                .buttonStyle(GradientButtonStyle(isSelected: homeData.checkDate() == "Tomorrow"))
+                .buttonStyle(GradientButtonStyle(isSelected: homeData.isDateEqual(to: .tomorrow)))
                 
                 // MARK: - DATE PICKER
-                DatePicker("", selection: $homeData.date, displayedComponents: .date)
+                DatePicker("", selection: $homeData.date, in: Date()... , displayedComponents: .date)
                     .labelsHidden()
             }
             .padding()
