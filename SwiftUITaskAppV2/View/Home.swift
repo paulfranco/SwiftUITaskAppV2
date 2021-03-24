@@ -87,6 +87,8 @@ struct Home: View {
                     .clipShape(Circle())
             })
             .padding()
+            
+            
         }) //: ZSTASCK
         
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))

@@ -35,7 +35,7 @@ struct EditTaskView: View {
                 .padding(.horizontal)
             
             
-            Text("When")
+            Text("When:")
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.black)
@@ -66,6 +66,7 @@ struct EditTaskView: View {
                 // MARK: - DATE PICKER
                 DatePicker("", selection: $homeData.date, in: Date()... , displayedComponents: .date)
                     .labelsHidden()
+                    
             }
             .padding()
             
