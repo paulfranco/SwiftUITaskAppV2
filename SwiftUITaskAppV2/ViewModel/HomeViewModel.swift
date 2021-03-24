@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Combine
 
 class HomeViewModel : ObservableObject {
     
@@ -15,6 +16,15 @@ class HomeViewModel : ObservableObject {
     @Published var date = Date()
     
     @Published var updateItem: Task!
+    
+    var subscriptions = Set<AnyCancellable>()
+    
+    init() {
+        $updateItem.sink { [unowned self] item in
+            self.content = item?.content ?? ""
+            self.date = item?.date ?? Date()
+        }.store(in: &subscriptions)
+    }
     
     // Checking and updating data
     let calendar = Calendar.current
@@ -44,37 +54,24 @@ class HomeViewModel : ObservableObject {
         if updateItem != nil {
             updateItem.date = date
             updateItem.content = content
-            
-            try! context.save()
-            
-            updateItem = nil
-            
-            content = ""
-            date = Date()
-            return
+        } else {
+            let newTask = Task(context: context)
+            newTask.date = date
+            newTask.content = content
         }
-        let newTask = Task(context: context)
-        
-        newTask.date = date
-        newTask.content = content
         
         do {
             try context.save()
-            
-            
-            content = ""
-            date = Date()
         } catch {
             print(error.localizedDescription)
         }
     }
     
+    func reset() {
+        updateItem = nil
+    }
+    
     func editItem(item: Task) {
         updateItem = item
-        
-        date = item.date!
-        content = item.content!
-        
-        
     }
 }

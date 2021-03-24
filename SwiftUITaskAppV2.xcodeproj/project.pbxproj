@@ -19,6 +19,7 @@
 		03AF7336260768DB008D9114 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF7335260768DB008D9114 /* HomeViewModel.swift */; };
 		03AF733B260769BD008D9114 /* EditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF733A260769BD008D9114 /* EditTaskView.swift */; };
 		03AF734026076EF2008D9114 /* DateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF733F26076EF2008D9114 /* DateButton.swift */; };
+		03AF734C260B530B008D9114 /* Task+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF734B260B530B008D9114 /* Task+helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		03AF7335260768DB008D9114 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		03AF733A260769BD008D9114 /* EditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskView.swift; sourceTree = "<group>"; };
 		03AF733F26076EF2008D9114 /* DateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateButton.swift; sourceTree = "<group>"; };
+		03AF734B260B530B008D9114 /* Task+helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+helper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		03AF72FA260766A3008D9114 /* SwiftUITaskAppV2 */ = {
 			isa = PBXGroup;
 			children = (
+				03AF734A260B52D6008D9114 /* ModelExtensions */,
 				03AF732F26076857008D9114 /* ViewModel */,
 				03AF732E26076840008D9114 /* View */,
 				03AF72FB260766A3008D9114 /* SwiftUITaskAppV2App.swift */,
@@ -162,6 +165,14 @@
 				03AF7335260768DB008D9114 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		03AF734A260B52D6008D9114 /* ModelExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				03AF734B260B530B008D9114 /* Task+helper.swift */,
+			);
+			path = ModelExtensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03AF7308260766A9008D9114 /* SwiftUITaskAppV2.xcdatamodeld in Sources */,
+				03AF734C260B530B008D9114 /* Task+helper.swift in Sources */,
 				03AF7336260768DB008D9114 /* HomeViewModel.swift in Sources */,
 				03AF7305260766A9008D9114 /* Persistence.swift in Sources */,
 				03AF733126076876008D9114 /* Home.swift in Sources */,

@@ -18,16 +18,13 @@ struct EditTaskView: View {
     var body: some View {
         // MARK: - VSTACK
         VStack {
-            // MARK: - HSTACK
-            HStack {
-                Text("\(homeData.updateItem == nil ? "Add New" : "Update") Task")
-                    .font(.system(size: 65))
-                    .fontWeight(.heavy)
-                    .foregroundColor(.black)
-                
-                Spacer(minLength: 0)
-            }//: HSTACK
-            .padding()
+            
+            Text("\(homeData.updateItem == nil ? "Add New" : "Update") Task")
+                .font(.system(size: 65))
+                .fontWeight(.heavy)
+                .foregroundColor(.black)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
             
             // MARK: - TEXT EDITOR
             TextEditor(text: $homeData.content)
@@ -37,21 +34,33 @@ struct EditTaskView: View {
             Divider()
                 .padding(.horizontal)
             
-            // MARK: - HSTACK
-            HStack {
-                Text("When")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-                
-                Spacer(minLength: 0)
-            }//: HSTACK
-            .padding()
+            
+            Text("When")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
             
             // MARK: - HSTACK - Date Options
             HStack(spacing: 10) {
-                DateButton(title: "Today", homeData: homeData)
-                DateButton(title: "Tomorrow", homeData: homeData)
+                
+                Button(action: {
+                        homeData.updateDate(value: "Today")
+                }, label: {
+                    Text("Today")
+                        .fontWeight(.bold)
+                })
+                .buttonStyle(GradientButtonStyle(isSelected: homeData.checkDate() == "Today"))
+    
+                Button(action: {
+                        homeData.updateDate(value: "Tomorrow")
+                    
+                }, label: {
+                    Text("Tomorrow")
+                        .fontWeight(.bold)
+                })
+                .buttonStyle(GradientButtonStyle(isSelected: homeData.checkDate() == "Tomorrow"))
                 
                 // MARK: - DATE PICKER
                 DatePicker("", selection: $homeData.date, displayedComponents: .date)
@@ -77,7 +86,7 @@ struct EditTaskView: View {
                     }
                 )
                 .padding(.vertical)
-                .frame(width: UIScreen.main.bounds.width - 30)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .background(
                     LinearGradient(gradient: .init(colors: [Color("Orange"),Color("Red")]), startPoint: .leading, endPoint: .trailing)
                 )
@@ -90,6 +99,9 @@ struct EditTaskView: View {
         }//: VSTACK
         .background(Color.black.opacity(0.06))
         .ignoresSafeArea(.all, edges: .bottom)
+        .onDisappear {
+            self.homeData.reset()
+        }
     }//: BODY
 }
 

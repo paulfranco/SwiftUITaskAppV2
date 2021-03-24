@@ -11,7 +11,7 @@ import CoreData
 struct Home: View {
     // MARK: - PROPERTIES
     @StateObject var homeData = HomeViewModel()
-    @FetchRequest(entity: Task.entity(), sortDescriptors: [NSSortDescriptor(key: "date", ascending: true)], animation: .spring()) var results : FetchedResults<Task>
+    @FetchRequest(entity: Task.entity(), sortDescriptors: [NSSortDescriptor(key: "date_", ascending: true)], animation: .spring()) var results : FetchedResults<Task>
     @Environment(\.managedObjectContext) var context
     @State private var editorIsShown: Bool = false
     
@@ -49,10 +49,10 @@ struct Home: View {
                             ForEach(results) { task in
                                 // MARK: - VSTACK
                                 VStack(alignment: .leading, spacing: 5, content: {
-                                    Text(task.content ?? "")
+                                    Text(task.content)
                                         .font(.title)
                                         .fontWeight(.bold)
-                                    Text(task.date ?? Date(), style: .date)
+                                    Text(task.date, style: .date)
                                         .fontWeight(.bold)
                                 })
                                 .foregroundColor(.black)
@@ -83,9 +83,7 @@ struct Home: View {
                     .font(.largeTitle)
                     .foregroundColor(.white)
                     .padding(20)
-                    .background(
-                        AngularGradient(gradient: .init(colors: [Color("Orange"),Color("Red")]), center: .center)
-                    )
+                    .modifier(GradientBackground(isSelected: true))
                     .clipShape(Circle())
             })
             .padding()

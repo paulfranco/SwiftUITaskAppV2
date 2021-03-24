@@ -17,19 +17,43 @@ struct DateButton: View {
         Button(action: { homeData.updateDate(value: title) }, label: {
             Text(title)
                 .fontWeight(.bold)
-                .foregroundColor(homeData.checkDate() == title ? .white : .gray)
-                .padding(.vertical, 10)
-                .padding(.horizontal, 20)
-                .background(
-                    homeData.checkDate() == title ?
-                        LinearGradient(gradient: .init(colors: [Color("Orange"), Color("Red")]), startPoint: .leading, endPoint: .trailing)
-                    :
-                        LinearGradient(gradient: .init(colors: [Color.white]), startPoint: .leading, endPoint: .trailing)
-                )
-                .cornerRadius(6)
         })
+        .buttonStyle(GradientButtonStyle(isSelected: homeData.checkDate() == title))
+    }
+}
+
+
+// MARK: VIEW MODIFIER
+struct GradientBackground: ViewModifier {
+    let isSelected: Bool
+    let selected = LinearGradient(gradient: .init(colors: [Color("Orange"), Color("Red")]), startPoint: .leading, endPoint: .trailing)
+    let unSelected = LinearGradient(gradient: .init(colors: [Color.white]), startPoint: .leading, endPoint: .trailing)
+    func body(content: Content) -> some View {
+        content.background(isSelected ? selected : unSelected)
+    }
+}
+
+struct GradientButtonStyle: ButtonStyle {
+    
+    let isSelected: Bool
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .fixedSize()
+            .foregroundColor(isSelected ? .white : .gray)
+            .frame(maxWidth: .infinity)
+            .padding()
+            .modifier(GradientBackground(isSelected: isSelected))
+            .cornerRadius(6)
+            .shadow(radius: configuration.isPressed ? 5 : 10 )
     }
 }
 
 
 // MARK: - PREVIEW
+struct DateButton_Previews: PreviewProvider {
+    static var previews: some View {
+        DateButton(title: "Today", homeData: HomeViewModel())
+            .padding()
+    }
+}
